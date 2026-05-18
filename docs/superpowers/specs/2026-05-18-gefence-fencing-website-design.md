@@ -50,21 +50,37 @@ brand/logo/Long-Island content is fully replaced.
 
 ## 3. Architecture (Approach A — approved)
 
-- **React Router multi-page SPA.** Vite + React 19 + Tailwind v3 + Framer Motion +
-  React Icons (all already installed). No new heavy dependencies.
-- **Centralized content layer** under `src/content/` — every page reads from it.
-- **Real Service Detail page** replaces `src/pages/LockedService.jsx` (the
-  membership-gate model is removed entirely, including the `$0/$49/$149` plans).
+> **Stack revision (2026-05-18, post-approval):** the user directed a switch from
+> Vite/React Router to **Next.js**. Router choice confirmed: **App Router**. The
+> project is re-scaffolded as a clean Next.js 15 app; the content layer and most
+> components port over. Sections 3 and 10 reflect this; the rest of the design
+> (site map, page content, copy, assets) is unchanged.
+
+- **Next.js 15 App Router**, statically generated, deployed on Vercel.
+  React 19 + Tailwind v3 + Framer Motion + React Icons. File-based routing under
+  `src/app/`. Server Components by default; `"use client"` only on interactive
+  components (animations, forms, accordions, lightbox, nav toggle).
+- **Centralized content layer** under `src/content/` — every route reads from it.
+  Pure data modules (no React) so they import cleanly into Server Components.
+- **Real Service Detail route** `src/app/services/[slug]/page.jsx` with
+  `generateStaticParams` (5 slugs pre-rendered). The old Vite
+  `LockedService`/membership-gate model (`$0/$49/$149` plans) is not ported.
 - **Design system kept as-is:** Tailwind brand tokens, `container-x`, `btn-primary`,
   `chip`, `heading-display`, CSS grid/noise textures, scroll/parallax animations.
-  Only the Fencepatrol logo/wordmark is replaced with a Gefence LLC mark.
-- **SEO:** lightweight custom `<Seo>` component sets `document.title` + meta tags +
-  injects JSON-LD `LocalBusiness` schema per page; static `sitemap.xml` + `robots.txt`
-  in `public/`. `vercel.json` SPA rewrite already present.
+  Fonts via `next/font` (Anton + Inter). Fencepatrol logo/wordmark replaced with a
+  Gefence LLC mark. Images via `next/image`.
+- **SEO:** Next.js **Metadata API** — static `metadata` / `generateMetadata` per
+  route for title, description, canonical, Open Graph + Twitter. JSON-LD
+  `LocalBusiness` via a small `<JsonLd>` script component. `src/app/sitemap.ts`
+  and `src/app/robots.ts` generate `sitemap.xml`/`robots.txt` at build. The Vite
+  `vercel.json` SPA rewrite is removed (Next handles routing natively).
 
 ### Why not the alternatives
 - **B (one long page):** contradicts the explicit "more pages" requirement; weak local SEO.
 - **C (MDX pipeline):** unnecessary build complexity for a brochure site (YAGNI).
+- **Vite/React Router (original §3):** superseded by the user's Next.js directive;
+  Next App Router gives stronger built-in SEO (Metadata API, SSG, image optimization)
+  for a local lead-gen site.
 
 ---
 
@@ -115,8 +131,8 @@ call button retained sitewide.
 ## 6. Inner Page Layouts (approved)
 
 Shared shell for every inner page: hero band → dense content sections →
-mid-page CTA → contact/estimate band → footer. Each page: `<Seo>` +
-breadcrumb + JSON-LD.
+mid-page CTA → contact/estimate band → footer. Each route exports `metadata`
+(or `generateMetadata`) and renders breadcrumb + `<JsonLd>`.
 
 - **/about** — story/mission, owner (Gary) intro, why NoCo trusts us, credentials
   (licensed/insured/bonded), values grid, crew & equipment, stats, testimonial, CTA.
@@ -155,20 +171,27 @@ breadcrumb + JSON-LD.
 | `processSteps.js` | step, title, text |
 | `valueProps.js` | icon, title, text |
 
-Existing `src/data.js` is migrated into these modules and removed.
+Modules are pure data (`.js`, no JSX) so Server Components import them directly.
+The legacy Vite `src/data.js` content is migrated here during re-scaffold and not
+carried over.
 
 ---
 
 ## 8. Component Plan
 
-- **Layout/shared:** `Seo`, `Navbar` (rebranded, multi-page links + Services dropdown),
-  `Footer` (expanded), `PhoneBadge`, `ScrollProgress`, `Reveal`, `CTABand`,
-  `ContactForm`, `Breadcrumb`, `SectionHeading`.
-- **Pages:** `Home`, `About`, `Services`, `ServiceDetail`, `FenceStyles`, `Gallery`,
-  `ServiceAreas`, `Contact`, `Faq`, `NotFound`.
-- **Home sections:** reuse/rework existing `Hero`, `Services`, `Process`, `Gallery`,
-  `Testimonials`, `FAQ`, `CTA`, `About`, `Marquee`→stats strip, `ParallaxQuote`.
-- **Removed:** `LockedService.jsx` and the `PLANS` membership model.
+- **Layout/shared:** `JsonLd` (schema script), `Navbar`, `Footer` (expanded),
+  `PhoneBadge`, `ScrollProgress`, `Reveal`, `CTABand`, `ContactForm`, `Breadcrumb`,
+  `SectionHeading`, `PageHero`. Native Metadata API replaces a custom `Seo`.
+- **Routes (App Router):** `src/app/page.jsx` (Home), `about/`, `services/`,
+  `services/[slug]/`, `fence-styles/`, `gallery/`, `service-areas/`, `contact/`,
+  `faq/`, plus `not-found.jsx`. Root `layout.jsx` holds `<html>`, fonts, Navbar/Footer
+  shell, base metadata.
+- **Client components** (`"use client"`): `Navbar`, `Hero`, `ContactForm`,
+  `Gallery` (lightbox/filter), `Faq` (accordion), and any Framer-Motion section
+  (`Process`, `Testimonials`, `ParallaxQuote`, stats strip, `Reveal`,
+  `ScrollProgress`). Server Components: pages, `Footer`, `SectionHeading`,
+  `Breadcrumb`, `PageHero`, `JsonLd`, content modules.
+- **Not ported:** `LockedService` and the `PLANS` membership model.
 
 Each component stays focused and single-purpose; page files compose sections and
 stay thin (data from content modules, not inline).
@@ -214,14 +237,20 @@ generation needed. Existing CSS grid/noise textures retained.
 
 ## 10. SEO & Technical Details
 
-- `<Seo>` component per page: unique `<title>`, meta description, canonical,
-  Open Graph + Twitter tags, JSON-LD `LocalBusiness` (name, phone, email,
-  areaServed = Greeley + NoCo towns, service catalog).
-- `public/sitemap.xml` (all 9 routes) + `public/robots.txt`.
+- **Metadata API** per route: `metadata` export (or `generateMetadata` for
+  `services/[slug]`) sets unique title, description, canonical (`metadataBase`),
+  Open Graph + Twitter. Root `layout.jsx` sets defaults + title template.
+- **JSON-LD** `LocalBusiness` (name, phone, email, areaServed = Greeley + NoCo
+  towns, service catalog) via a `<JsonLd>` script component in the root layout.
+- `src/app/sitemap.ts` (all 9 routes + 5 service slugs, derived from content) and
+  `src/app/robots.ts` — generated at build, no hand-maintained XML.
+- `next/image` for all imagery (sized, lazy, modern formats); `next/font` for
+  Anton + Inter (no FOUT, no external font request).
 - Semantic headings, alt text on all images, accessible nav (keyboard + aria),
   reduced-motion respect for Framer animations.
 - Lighthouse target: performance/SEO/accessibility ≥ 90.
-- Build: `npm run build` must pass clean; `vercel.json` SPA rewrite already in repo.
+- Build: `npm run build` (Next production build) must pass clean. Deployed on
+  Vercel; no `vercel.json` needed.
 
 ---
 
