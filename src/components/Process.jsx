@@ -1,5 +1,6 @@
+"use client";
 import { motion } from "framer-motion";
-import { PROCESS } from "../data.js";
+import { PROCESS_STEPS } from "@/content/index.js";
 
 export default function Process() {
   return (
@@ -16,11 +17,11 @@ export default function Process() {
           <h2 className="heading-display text-4xl sm:text-5xl lg:text-6xl text-white">
             From{" "}
             <span className="bg-gradient-to-r from-brand-orange to-brand-orangeDark bg-clip-text text-transparent">
-              Damage
+              Quote
             </span>{" "}
             To{" "}
             <span className="bg-gradient-to-r from-brand-green to-brand-blue bg-clip-text text-transparent">
-              Beauty
+              Finished Fence
             </span>{" "}
             In 4 Steps
           </h2>
@@ -29,7 +30,7 @@ export default function Process() {
         <div className="mt-16 relative">
           <div className="hidden lg:block absolute top-12 left-[12%] right-[12%] h-0.5 bg-gradient-to-r from-brand-orange via-brand-green to-brand-blue opacity-30" />
           <div className="grid lg:grid-cols-4 gap-6 lg:gap-10">
-            {PROCESS.map((p, i) => (
+            {PROCESS_STEPS.map((p, i) => (
               <motion.div
                 key={p.step}
                 initial={{ opacity: 0, y: 40 }}

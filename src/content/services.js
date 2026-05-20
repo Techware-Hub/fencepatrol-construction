@@ -1,0 +1,175 @@
+export const SERVICES = [
+  {
+    slug: "fence-installation",
+    title: "Fence Installation",
+    icon: "fence",
+    image: "/img/svc-installation.jpg",
+    summary: "New wood, vinyl, chain-link, and aluminum fences built to handle Colorado weather and last for decades.",
+    overview:
+      "A fence is one of the highest-impact upgrades you can make to a Greeley property — it adds privacy, security, curb appeal, and value all at once. Gefence LLC installs residential and light-commercial fences across Northern Colorado using contractor-grade materials and proper post depth for our frost line, so your fence stays straight through freeze, thaw, and high wind.",
+    included: [
+      "Free on-site measurement and written estimate",
+      "Concrete-set posts dug below the Colorado frost line",
+      "Wood, vinyl, chain-link, aluminum, composite, and split-rail options",
+      "Gate fabrication and hardware included",
+      "Old-fence removal and full site cleanup",
+      "Workmanship warranty in writing",
+    ],
+    process: [
+      "We walk the property, confirm the line, and discuss style and budget.",
+      "You get a clear written quote — no vague ranges.",
+      "We call in utility locates and pull permits where required.",
+      "Our crew sets posts, hangs panels and gates, and hauls everything away.",
+      "Final walkthrough and your warranty in hand.",
+    ],
+    pricingFactors: [
+      "Linear footage and number of gates",
+      "Material and fence height",
+      "Terrain, slope, and rocky soil",
+      "Old fence removal and haul-off",
+    ],
+    faqs: [
+      { q: "How long does a typical install take?", a: "Most residential yards are finished in 1–3 days depending on footage and terrain." },
+      { q: "Do you set posts in concrete?", a: "Yes. Every post is concrete-set below our local frost line so the fence doesn't heave or lean." },
+      { q: "Can you match an existing fence?", a: "In most cases, yes — bring us a photo and we'll spec the closest durable match." },
+    ],
+  },
+  {
+    slug: "automatic-gate-installation",
+    title: "Automatic Gate Installation",
+    icon: "gate",
+    image: "/img/svc-gates.jpg",
+    summary: "Swing and slide driveway gates with keypad, remote, and smartphone access — installed and serviced.",
+    overview:
+      "An automatic gate is convenience and security in one. Gefence LLC installs and wires automated swing and slide gates for driveways and properties around Greeley, including the operator, safety sensors, and your choice of keypad, remote, or phone-app entry. We size the operator to the gate and the wind load so it opens reliably year-round.",
+    included: [
+      "Gate design sized to your driveway and slope",
+      "Heavy-duty swing or slide operator",
+      "Keypad, remote, and smartphone access options",
+      "Safety photo-eyes and auto-reverse",
+      "Low-voltage wiring and weatherproof enclosure",
+      "Operation training and maintenance guidance",
+    ],
+    process: [
+      "Site visit to assess driveway width, slope, and power.",
+      "We recommend swing vs. slide and the right operator.",
+      "Written quote covering gate, automation, and access.",
+      "Install, wire, program, and test all safety features.",
+      "We show you how to operate and maintain it.",
+    ],
+    pricingFactors: [
+      "Swing vs. slide and gate size",
+      "Operator horsepower and power availability",
+      "Access controls (keypad, remote, app, intercom)",
+      "Trenching and wiring distance",
+    ],
+    faqs: [
+      { q: "Swing or slide gate — which is better?", a: "Slide gates suit short or sloped driveways; swing gates suit flat, wider entries. We'll recommend based on your site." },
+      { q: "What happens in a power outage?", a: "We install operators with battery backup and a manual release so you're never locked in or out." },
+    ],
+  },
+  {
+    slug: "deer-fencing",
+    title: "Deer Fencing",
+    icon: "deer",
+    image: "/img/svc-deer.jpg",
+    summary: "Tall, low-visibility deer fencing that actually protects Northern Colorado gardens, orchards, and landscaping.",
+    overview:
+      "Deer pressure is real across Northern Colorado, and a standard 4-foot fence won't stop them. Gefence LLC installs 7–8 foot deer fencing — heavy poly mesh or welded wire — engineered to keep deer out of gardens, orchards, and ornamental landscaping while staying nearly invisible from a distance.",
+    included: [
+      "7–8 ft height engineered to deter jumping",
+      "Heavy poly mesh or welded-wire options",
+      "Ground-level reinforcement to stop pushing under",
+      "Gates for garden and equipment access",
+      "Tree-line and slope routing",
+      "Clean, low-visibility finished look",
+    ],
+    process: [
+      "Walk the area you need protected and note deer paths.",
+      "Recommend mesh type and height for your pressure level.",
+      "Written quote with gate placement.",
+      "Install posts, tension the mesh, and secure the base.",
+      "Walkthrough and care tips.",
+    ],
+    pricingFactors: [
+      "Enclosed area and perimeter length",
+      "Mesh type (poly vs. welded wire)",
+      "Number and size of access gates",
+      "Terrain and tree-line routing",
+    ],
+    faqs: [
+      { q: "How tall does deer fencing need to be?", a: "We install 7–8 ft. Deer can clear shorter fences, especially under food pressure in winter." },
+      { q: "Will it ruin my view?", a: "Black poly mesh visually disappears from a few feet away — most clients barely notice it." },
+    ],
+  },
+  {
+    slug: "pool-fencing",
+    title: "Pool Fencing",
+    icon: "pool",
+    image: "/img/svc-pool.jpg",
+    summary: "Code-compliant pool safety fencing — aluminum, mesh, and glass-style — that keeps kids and pets safe.",
+    overview:
+      "Pool fencing is a safety requirement, not an afterthought. Gefence LLC installs code-compliant pool barriers around Greeley — durable powder-coated aluminum, removable mesh, and modern flat-top styles — with self-closing, self-latching gates that meet residential pool-barrier code.",
+    included: [
+      "Code-compliant height and picket spacing",
+      "Self-closing, self-latching safety gates",
+      "Powder-coated aluminum or removable mesh",
+      "Rust- and corrosion-resistant hardware",
+      "Layouts that work around decks and hardscape",
+      "Clean finish that complements the pool area",
+    ],
+    process: [
+      "Measure the pool enclosure and review code requirements.",
+      "Recommend style (aluminum, mesh, flat-top) and gate placement.",
+      "Written quote with code notes.",
+      "Install fence and self-latching gates; verify spacing.",
+      "Final safety check and walkthrough.",
+    ],
+    pricingFactors: [
+      "Perimeter length and number of gates",
+      "Material (aluminum vs. removable mesh)",
+      "Code-required height and gate hardware",
+      "Decking and hardscape obstacles",
+    ],
+    faqs: [
+      { q: "Does the gate have to self-close?", a: "Yes — residential pool code requires self-closing, self-latching gates, and that's how we build them." },
+      { q: "Can the fence be removable?", a: "Yes. We install removable mesh systems that take down for entertaining and reinstall in minutes." },
+    ],
+  },
+  {
+    slug: "fence-repair",
+    title: "Fence Repair & Restoration",
+    icon: "repair",
+    image: "/img/svc-repair.jpg",
+    summary: "Leaning posts, wind-damaged panels, sagging gates — repaired fast so you don't replace the whole fence.",
+    overview:
+      "Colorado wind and snow are hard on fences. Before you replace an entire run, let Gefence LLC assess it — often we can reset posts, swap damaged sections, and rehang gates for a fraction of replacement cost, and restore the look with a clean stain or seal.",
+    included: [
+      "Storm and wind-damage repair",
+      "Post resetting and replacement",
+      "Panel and picket replacement",
+      "Gate rehang and hardware fixes",
+      "Stain, seal, and restoration",
+      "Honest replace-vs-repair assessment",
+    ],
+    process: [
+      "Inspect the fence and identify what's actually failing.",
+      "Tell you honestly whether to repair or replace.",
+      "Written quote for the repair scope.",
+      "Repair, reset, and restore.",
+      "Walkthrough so you know it's solid.",
+    ],
+    pricingFactors: [
+      "Number of posts/panels affected",
+      "Material and matching requirements",
+      "Access and soil conditions",
+      "Optional stain/seal restoration",
+    ],
+    faqs: [
+      { q: "Is it cheaper to repair or replace?", a: "Often repair — if posts are sound. We'll give you a straight answer after inspecting it." },
+      { q: "Do you do emergency storm repair?", a: "Yes. Call us after a windstorm and we'll prioritize getting your fence secure." },
+    ],
+  },
+];
+
+export const getService = (slug) => SERVICES.find((s) => s.slug === slug);

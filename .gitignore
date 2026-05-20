@@ -11,9 +11,17 @@ node_modules
 dist
 dist-ssr
 *.local
+
+# Next.js
+.next/
+out/
+next-env.d.ts
 .vercel
 .env
 .env.local
+
+# Superpowers brainstorm companion
+.superpowers/
 
 # Editor directories and files
 .vscode/*

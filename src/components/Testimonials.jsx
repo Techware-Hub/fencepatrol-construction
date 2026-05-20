@@ -1,10 +1,11 @@
+"use client";
 import { motion } from "framer-motion";
 import { FaStar, FaQuoteLeft } from "react-icons/fa";
-import { TESTIMONIALS } from "../data.js";
+import { TESTIMONIALS } from "@/content/index.js";
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="relative py-24 sm:py-32">
+    <section className="relative py-24 sm:py-32">
       <div className="container-x">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -37,14 +38,14 @@ export default function Testimonials() {
                   <FaStar key={k} className="text-brand-orange" />
                 ))}
               </div>
-              <p className="text-white/85 leading-relaxed italic">"{t.text}"</p>
+              <p className="text-white/85 leading-relaxed italic">&ldquo;{t.text}&rdquo;</p>
               <div className="mt-5 flex items-center gap-3">
                 <div className="w-11 h-11 rounded-full bg-gradient-to-br from-brand-orange to-brand-blue flex items-center justify-center font-bold text-white">
                   {t.name.charAt(0)}
                 </div>
                 <div>
                   <div className="text-white font-bold">{t.name}</div>
-                  <div className="text-white/55 text-xs">{t.role}</div>
+                  <div className="text-white/55 text-xs">{t.town}</div>
                 </div>
               </div>
             </motion.div>

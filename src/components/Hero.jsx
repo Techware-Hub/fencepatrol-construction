@@ -1,11 +1,11 @@
+"use client";
 import { useRef } from "react";
+import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { FaPhoneAlt, FaStar, FaShieldAlt, FaTools } from "react-icons/fa";
 import { HiArrowDown } from "react-icons/hi";
-import { PHONE_DISPLAY, PHONE_HREF } from "../data.js";
-
-const BG_IMAGE =
-  "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1920&q=80";
+import SafeImage from "./SafeImage.jsx";
+import { BUSINESS } from "@/content/index.js";
 
 export default function Hero() {
   const ref = useRef(null);
@@ -16,8 +16,6 @@ export default function Hero() {
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "-25%"]);
   const textOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
-  const logoY = useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
-  const logoScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.85]);
 
   return (
     <section
@@ -28,11 +26,13 @@ export default function Hero() {
         style={{ y: bgY }}
         className="absolute inset-0 -top-20 -bottom-20 pointer-events-none"
       >
-        <img
-          src={BG_IMAGE}
+        <SafeImage
+          src="/img/hero.jpg"
           alt=""
-          aria-hidden
-          className="w-full h-full object-cover opacity-25"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover opacity-25"
         />
       </motion.div>
 
@@ -50,11 +50,6 @@ export default function Hero() {
         className="absolute -bottom-32 -right-32 w-[28rem] h-[28rem] rounded-full bg-brand-blue/30 blur-3xl"
         animate={{ x: [0, -40, 0], y: [0, -30, 0] }}
         transition={{ duration: 14, repeat: Infinity }}
-      />
-      <motion.div
-        className="absolute top-1/3 right-1/4 w-64 h-64 rounded-full bg-brand-green/15 blur-3xl"
-        animate={{ scale: [1, 1.2, 1] }}
-        transition={{ duration: 10, repeat: Infinity }}
       />
 
       <div className="container-x relative z-10 grid lg:grid-cols-2 gap-12 items-center">
@@ -78,12 +73,12 @@ export default function Hero() {
           >
             DAMAGE{" "}
             <span className="bg-gradient-to-r from-brand-orange via-brand-orangeDark to-brand-orange bg-clip-text text-transparent text-glow-orange">
-              DISAPPEARS
+              CONTAINED
             </span>
             <br />
-            BEAUTY{" "}
+            FENCES{" "}
             <span className="bg-gradient-to-r from-brand-green to-brand-blue bg-clip-text text-transparent">
-              APPEARS
+              THAT LAST
             </span>
             .
           </motion.h1>
@@ -94,8 +89,8 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mt-6 text-lg sm:text-xl text-white/75 max-w-xl leading-relaxed"
           >
-            Fencing, construction, remodeling, and landscaping done right.
-            Bobcat-powered crews. Built-to-last craftsmanship. Honest pricing.
+            Greeley&rsquo;s fence installation specialists — wood, vinyl, aluminum, gates, deer & pool
+            fencing. Built for Colorado weather. Honest written quotes.
           </motion.p>
 
           <motion.div
@@ -104,11 +99,11 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="mt-8 flex flex-col sm:flex-row gap-4"
           >
-            <a href={PHONE_HREF} className="btn-primary text-base sm:text-lg">
-              <FaPhoneAlt /> Call {PHONE_DISPLAY}
-            </a>
-            <a href="#services" className="btn-outline text-base sm:text-lg">
-              Explore Services
+            <Link href="/contact" className="btn-primary text-base sm:text-lg">
+              Get a Free Estimate
+            </Link>
+            <a href={BUSINESS.phoneHref} className="btn-outline text-base sm:text-lg">
+              <FaPhoneAlt /> Call {BUSINESS.phoneDisplay}
             </a>
           </motion.div>
 
@@ -123,28 +118,20 @@ export default function Hero() {
                 <FaStar key={i} className="text-brand-orange" />
               ))}
             </div>
-            <span>Trusted by 500+ homeowners on Long Island</span>
+            <span>Trusted across Greeley & Northern Colorado</span>
           </motion.div>
         </motion.div>
 
         <motion.div
-          style={{ y: logoY, scale: logoScale }}
           initial={{ opacity: 0, scale: 0.85 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.9, delay: 0.2 }}
-          className="relative flex justify-center lg:justify-end"
+          className="relative hidden lg:flex justify-center lg:justify-end"
         >
           <motion.div
             className="absolute inset-0 rounded-full bg-gradient-to-br from-brand-orange/30 via-brand-blue/20 to-brand-green/20 blur-3xl"
             animate={{ scale: [1, 1.1, 1] }}
             transition={{ duration: 5, repeat: Infinity }}
-          />
-          <motion.img
-            src="/logo.png"
-            alt="Fencepatrol & Construction Logo"
-            className="relative w-72 sm:w-96 lg:w-[28rem] drop-shadow-[0_20px_50px_rgba(249,115,22,0.45)]"
-            animate={{ y: [0, -12, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
           />
           <motion.div
             className="absolute -left-4 top-8 chip bg-brand-orange/15 border-brand-orange/40 text-white"
@@ -152,7 +139,7 @@ export default function Hero() {
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 1 }}
           >
-            🏗️ Bobcat Crews
+            🚪 Auto Gates
           </motion.div>
           <motion.div
             className="absolute -right-2 bottom-16 chip bg-brand-green/15 border-brand-green/40 text-white"
@@ -160,7 +147,7 @@ export default function Hero() {
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 1.2 }}
           >
-            🌿 Landscaping
+            🦌 Deer Fence
           </motion.div>
           <motion.div
             className="absolute left-10 bottom-4 chip bg-brand-blue/15 border-brand-blue/40 text-white"
@@ -168,8 +155,17 @@ export default function Hero() {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 1.4 }}
           >
-            🏠 Remodeling
+            🏊 Pool Fence
           </motion.div>
+          <div className="relative w-72 sm:w-96 lg:w-[26rem] aspect-square rounded-[2.5rem] overflow-hidden border border-white/10">
+            <SafeImage
+              src="/img/hero-detail.jpg"
+              alt="Recent Gefence installation"
+              fill
+              sizes="(max-width:1024px) 60vw, 28rem"
+              className="object-cover"
+            />
+          </div>
         </motion.div>
       </div>
 

@@ -1,15 +1,8 @@
+"use client";
 import { motion } from "framer-motion";
 import { FaCheckCircle } from "react-icons/fa";
-import { STATS } from "../data.js";
-
-const POINTS = [
-  "Locally owned & operated — your neighbors, not a call center",
-  "Bobcat-equipped crews for fast site prep and grading",
-  "Premium materials — wood, vinyl, aluminum, composite",
-  "Transparent pricing — no hidden fees, ever",
-  "Written warranties on every job",
-  "Free on-site estimates within 24 hours",
-];
+import SafeImage from "./SafeImage.jsx";
+import { BUSINESS, VALUE_PROPS } from "@/content/index.js";
 
 export default function About() {
   return (
@@ -23,12 +16,13 @@ export default function About() {
           transition={{ duration: 0.7 }}
           className="relative"
         >
-          <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-glowBlue">
-            <img
-              src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1400&q=70"
-              alt="Construction crew"
-              loading="lazy"
-              className="w-full h-[440px] object-cover"
+          <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-glowBlue h-[440px]">
+            <SafeImage
+              src="/img/about-crew.jpg"
+              alt="Gefence LLC crew on a Northern Colorado job site"
+              fill
+              sizes="(max-width:1024px) 100vw, 50vw"
+              className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent" />
           </div>
@@ -55,23 +49,22 @@ export default function About() {
         >
           <span className="chip mb-4">Who We Are</span>
           <h2 className="heading-display text-4xl sm:text-5xl lg:text-6xl text-white">
-            Built On{" "}
+            Local owners,{" "}
             <span className="bg-gradient-to-r from-brand-orange to-brand-blue bg-clip-text text-transparent">
-              Hammers, Heart
+              local accountability
             </span>
-            , <br />
-            And Honest Work.
+            .
           </h2>
           <p className="mt-5 text-white/65 text-lg leading-relaxed">
-            Fencepatrol & Construction is a family-led, Long Island–based team that treats
-            every project like our own home. We show up on time, do it right the first
-            time, and clean up after ourselves.
+            Gefence LLC is owned by {BUSINESS.owner} and built around a simple idea: a fence
+            should be set right the first time and stand up to everything Colorado throws at it.
+            You talk to the person responsible for the work — not a call center.
           </p>
 
           <ul className="mt-7 grid sm:grid-cols-2 gap-3">
-            {POINTS.map((p, i) => (
+            {VALUE_PROPS.map((v, i) => (
               <motion.li
-                key={p}
+                key={v.title}
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -79,31 +72,13 @@ export default function About() {
                 className="flex items-start gap-2.5 text-white/80 text-sm"
               >
                 <FaCheckCircle className="text-brand-green mt-0.5 shrink-0" />
-                <span>{p}</span>
+                <span>
+                  <span className="font-semibold text-white">{v.title}.</span> {v.text}
+                </span>
               </motion.li>
             ))}
           </ul>
         </motion.div>
-      </div>
-
-      <div className="container-x mt-20 grid grid-cols-2 lg:grid-cols-4 gap-4">
-        {STATS.map((s, i) => (
-          <motion.div
-            key={s.label}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.1 }}
-            className="rounded-2xl p-6 border border-white/10 bg-gradient-to-br from-brand-panel to-brand-dark text-center"
-          >
-            <div className="heading-display text-4xl sm:text-5xl bg-gradient-to-r from-brand-orange to-brand-green bg-clip-text text-transparent">
-              {s.value}
-            </div>
-            <div className="mt-2 text-white/60 text-xs sm:text-sm uppercase tracking-wider">
-              {s.label}
-            </div>
-          </motion.div>
-        ))}
       </div>
     </section>
   );
