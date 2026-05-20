@@ -50,8 +50,22 @@ export default function Contact() {
       </section>
       <ContactForm />
       <section className="pb-16">
-        <div className="container-x rounded-2xl border border-white/10 overflow-hidden h-72 bg-brand-panel/60 grid place-items-center text-white/40">
-          Map embed placeholder &mdash; add Google Maps once client provides address/API key.
+        <div className="container-x">
+          <div className="relative rounded-2xl border border-white/10 overflow-hidden h-80 bg-brand-panel/60">
+            <iframe
+              title={`${BUSINESS.name} service area — ${BUSINESS.city}, ${BUSINESS.state}`}
+              src={`https://www.google.com/maps?q=${encodeURIComponent(
+                `${BUSINESS.city}, ${BUSINESS.state}`
+              )}&z=11&output=embed`}
+              className="absolute inset-0 w-full h-full"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
+          </div>
+          <p className="text-center text-white/40 text-xs mt-3">
+            Map centered on {BUSINESS.city}, {BUSINESS.state} &mdash; we cover the surrounding {BUSINESS.region} towns.
+          </p>
         </div>
       </section>
     </main>
