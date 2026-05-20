@@ -38,7 +38,7 @@ export default function ContactForm({ compact = false }) {
             {sent ? (
               <div className="text-center py-10">
                 <FaCheckCircle className="text-brand-green text-5xl mx-auto mb-4" />
-                <h3 className="heading-display text-2xl text-white">Thanks — we'll be in touch.</h3>
+                <h3 className="heading-display text-2xl text-white">Thanks &mdash; we&rsquo;ll be in touch.</h3>
                 <p className="text-white/60 mt-2">
                   For the fastest response, call {BUSINESS.phoneDisplay}.
                 </p>
