@@ -12,7 +12,8 @@ export default function ContactForm({ compact = false }) {
     setSent(true);
   };
   const input =
-    "w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/40 focus:border-brand-orange focus:outline-none";
+    "w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/40 focus:border-brand-orange focus:outline-none [color-scheme:dark]";
+  const selectInput = `${input} appearance-none bg-no-repeat bg-[right_1rem_center] pr-12 bg-[length:1rem] bg-[url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23F97316' stroke-width='2'><path d='M5 8l5 5 5-5'/></svg>")]`;
   return (
     <section id="contact-form" className="relative py-16">
       <div className="container-x">
@@ -48,10 +49,12 @@ export default function ContactForm({ compact = false }) {
                 <input className={input} placeholder="Your name" required value={f.name} onChange={set("name")} />
                 <input className={input} placeholder="Phone" type="tel" required value={f.phone} onChange={set("phone")} />
                 <input className={input} placeholder="Email" type="email" value={f.email} onChange={set("email")} />
-                <select className={input} required value={f.service} onChange={set("service")}>
-                  <option value="">Service needed…</option>
+                <select className={selectInput} required value={f.service} onChange={set("service")}>
+                  <option value="" className="bg-brand-dark text-white/60">
+                    Service needed…
+                  </option>
                   {SERVICES.map((s) => (
-                    <option key={s.slug} value={s.slug}>
+                    <option key={s.slug} value={s.slug} className="bg-brand-dark text-white">
                       {s.title}
                     </option>
                   ))}
