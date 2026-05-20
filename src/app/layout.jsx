@@ -1,6 +1,10 @@
 import { Inter, Anton } from "next/font/google";
 import "./globals.css";
 import { BUSINESS } from "@/content/index.js";
+import Navbar from "@/components/Navbar.jsx";
+import Footer from "@/components/Footer.jsx";
+import JsonLd from "@/components/JsonLd.jsx";
+import PhoneBadge from "@/components/PhoneBadge.jsx";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const anton = Anton({ subsets: ["latin"], weight: "400", variable: "--font-anton", display: "swap" });
@@ -20,7 +24,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${anton.variable}`}>
-      <body>{children}</body>
+      <body>
+        <JsonLd />
+        <Navbar />
+        {children}
+        <Footer />
+        <PhoneBadge variant="floating" />
+      </body>
     </html>
   );
 }
